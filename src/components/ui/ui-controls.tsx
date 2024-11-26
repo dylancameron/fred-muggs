@@ -20,13 +20,9 @@ export default function UIControls({
 }: UIControlsProps) {
 	const actionEntries = Object.entries(actionMap[language]);
 	const actions = actionEntries.map(([, action]) => action);
-	// const actionDisplayNames = actionEntries.map(
-	// 	([displayName]) => displayName
-	// );
 
 	const sceneEntries = Object.entries(sceneMap[language]);
 	const scenes = sceneEntries.map(([, scene]) => scene);
-	// const sceneDisplayNames = sceneEntries.map(([displayName]) => displayName);
 
 	const [activeAction, setActiveAction] = useState<ActionName>(actions[0]);
 	const [activeScene, setActiveScene] = useState<SceneName>(scenes[0]);
@@ -56,36 +52,48 @@ export default function UIControls({
 		setCurrentScene(nextScene);
 	};
 
-	// const activeActionDisplayName =
-	// 	actionDisplayNames[
-	// 		actions.findIndex((action) => action === activeAction)
-	// 	] || "";
-	// const activeSceneDisplayName =
-	// 	sceneDisplayNames[scenes.findIndex((scene) => scene === activeScene)] ||
-	// 	"";
+	useEffect(() => {
+		window.addEventListener("keydown", (e) => {
+			if (e.code === "ArrowRight") {
+				handleNextAction();
+			}
+		});
+		window.addEventListener("keydown", (e) => {
+			if (e.code === "ArrowLeft") {
+				handleNextScene();
+			}
+		});
+
+		return () => {
+			window.removeEventListener("keydown", (e) => {
+				if (e.code === "ArrowRight") {
+					handleNextAction();
+				}
+			});
+			window.removeEventListener("keydown", (e) => {
+				if (e.code === "ArrowLeft") {
+					handleNextScene();
+				}
+			});
+		};
+	});
 
 	return (
 		<>
-			<div className="m-1 max-w-xl flex justify-center items-start gap-2 flex-wrap px-1">
+			<div className="m-1 flex justify-center items-start gap-2 flex-wrap px-1">
 				<button
 					type="button"
-					className="border-1 border-transparent whitespace-nowrap flex-1 bg-black/50 backdrop-blur-sm text-white p-0.5 rounded-md hover:bg-opacity-20 active:bg-white/5"
+					className="hidden border-1 border-transparent whitespace-nowrap flex-1 bg-black/50 backdrop-blur-sm text-white p-0.5 rounded-md hover:bg-opacity-20 active:bg-white/5"
 					onClick={handleNextAction}
 				>
-					<span className="text-center text-xs">
-						Change Dance
-						{/* {formatName(activeActionDisplayName)} */}
-					</span>
+					<span className="text-center text-xs">Change Dance</span>
 				</button>
 				<button
 					type="button"
-					className="border-1 border-transparent whitespace-nowrap flex-1 bg-black/90 backdrop-blur-sm text-white p-0.5 rounded-md hover:bg-opacity-20 active:bg-white/5"
+					className="hidden border-1 border-transparent whitespace-nowrap flex-1 bg-black/90 backdrop-blur-sm text-white p-0.5 rounded-md hover:bg-opacity-20 active:bg-white/5"
 					onClick={handleNextScene}
 				>
-					<span className="text-center text-xs">
-						{/* {formatName(activeSceneDisplayName)} */}
-						Change Scene
-					</span>
+					<span className="text-center text-xs">Change Scene</span>
 				</button>
 			</div>
 		</>

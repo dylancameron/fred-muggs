@@ -1,4 +1,4 @@
-import { Mesh, Group, Canvas, DreiLoader } from "@/three/exports";
+import { Mesh, Group, Canvas } from "@/three/exports";
 import React, { Suspense, useEffect, useRef, useState, useMemo } from "react";
 import { ActionName } from "@/types/actions.js";
 import { useSceneStore } from "@/hooks/use-scene-store";
@@ -74,9 +74,9 @@ export default function Scene({ language }: SceneProps) {
 				/>
 			</div>
 			<div className="fixed z-0 top-0 h-screen w-screen">
-				<Canvas dpr={[0.5, 1]}>
+				<Canvas shadows>
 					<color attach="background" args={["#020202"]} />
-					<Suspense fallback={<DreiLoader />}>
+					<Suspense fallback={null}>
 						{SceneComponent}
 						<CharacterController animationName={animationName} />
 					</Suspense>

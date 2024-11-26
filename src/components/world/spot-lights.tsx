@@ -35,7 +35,7 @@ export default function SpotLights({
 			const lightOffset = new Vector3(0, 0, 0); // Adjust offset as needed
 
 			spotLight1.current.position.lerp(
-				pointerPosition.clone().add(new Vector3(5, 10, -5)),
+				pointerPosition.clone().add(new Vector3(5, 20, -5)),
 				0.01
 			);
 			spotLight1.current.target.position.lerp(
@@ -45,7 +45,7 @@ export default function SpotLights({
 			spotLight1.current.target.updateMatrixWorld();
 
 			spotLight2.current.position.lerp(
-				pointerPosition.clone().add(new Vector3(-5, 10, -5)),
+				pointerPosition.clone().add(new Vector3(-5, 20, -5)),
 				0.01
 			);
 			spotLight2.current.target.position.lerp(
@@ -78,10 +78,10 @@ export default function SpotLights({
 				volumetric={true}
 				penumbra={0.1}
 				anglePower={5}
-				distance={2500}
+				distance={1500}
 				angle={1.5}
 				radiusTop={0.1}
-				radiusBottom={250}
+				radiusBottom={150}
 				color={color2}
 			/>
 		</group>

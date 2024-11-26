@@ -16,10 +16,10 @@ export const cameraConfigs = {
 		lookAt: new Vector3(0, 0, 0),
 	},
 	TrainCar: {
-		position: new Vector3(0, -1, 12),
-		fov: 45,
-		v: new Vector3(0, 10, 0),
-		lookAt: new Vector3(0, 1, 0),
+		position: new Vector3(0, 3, 9),
+		fov: 60,
+		v: new Vector3(0, 1, 0),
+		lookAt: new Vector3(0, -1, 0),
 	},
 };
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from "react";
-import { Mesh, useGLTF } from "@/three/exports";
+import { useGLTF } from "@/three/exports";
 import StreetLights from "../street-lights";
 
 interface SubwayEntranceProps {
@@ -13,10 +13,8 @@ const SubwayEntrance = React.memo(({ modelUrl }: SubwayEntranceProps) => {
 	useEffect(() => {
 		if (scene) {
 			scene.traverse((child) => {
-				if (child instanceof Mesh) {
-					child.castShadow = true;
-					child.receiveShadow = true;
-				}
+				child.castShadow = true;
+				child.receiveShadow = true;
 			});
 		}
 	}, [scene]);
@@ -26,9 +24,7 @@ const SubwayEntrance = React.memo(({ modelUrl }: SubwayEntranceProps) => {
 			<group
 				position={[0, -2, -6]}
 				rotation={[0, Math.PI / 2, 0]}
-				scale={3}
-				castShadow
-				receiveShadow
+				scale={3.5}
 			>
 				<primitive object={scene} castShadow receiveShadow />
 			</group>
@@ -51,6 +47,7 @@ const Lighting = () => {
 		<>
 			<ambientLight intensity={1.5} />
 			<StreetLights />
+			<fog attach="fog" args={["#000", 0.1, 60]} />
 		</>
 	);
 };

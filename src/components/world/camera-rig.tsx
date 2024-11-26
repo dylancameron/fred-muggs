@@ -34,7 +34,7 @@ const CameraRig: React.FC<CameraRigProps> = ({
 	useFrame(({ camera, clock }) => {
 		if (cameraRef.current) {
 			const t = clock.getElapsedTime();
-			const smoothFactor = 0.05; // Adjust this value for smoother or faster transitions
+			const smoothFactor = 0.02; // Adjust this value for smoother or faster transitions
 
 			// Smoothly interpolate camera position
 			camera.position.lerp(targetPosition.current, smoothFactor);
@@ -49,7 +49,7 @@ const CameraRig: React.FC<CameraRigProps> = ({
 
 			if (v) {
 				camera.position.x += Math.sin(t / 5) * 0.1;
-				camera.position.z += Math.cos(t / 5) * 0.1;
+				camera.position.z += Math.cos(t / 5) * 0.05;
 				camera.lookAt(lookAt);
 			}
 		}

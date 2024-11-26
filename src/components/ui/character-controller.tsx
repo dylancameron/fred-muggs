@@ -14,6 +14,7 @@ const CharacterController: FC<CharacterControllerProps> = memo(
 				modelUrl: "/models/chimp.glb",
 				position: [0, -2, 2] as [number, number, number],
 				scale: 0.158 as number,
+				idleAnimationName: "Idle",
 			}),
 			[]
 		);

@@ -1,7 +1,7 @@
 import React from "react";
 
 interface TrainLightsProps {
-	shadowBias?: number;
+	// shadowBias?: number;
 	distance?: number;
 	decay?: number;
 	intensity?: number;
@@ -10,11 +10,11 @@ interface TrainLightsProps {
 }
 
 const TrainLights: React.FC<TrainLightsProps> = ({
-	shadowBias = -0.001,
+	// shadowBias = -0.0005,
 	distance = 25,
-	decay = 0.5,
+	decay = 0.75,
 	intensity = 1.5,
-	color = "yellow",
+	color = "white",
 }) => {
 	const leftTrackLightPosition = 4;
 	const leftBias = 0.45;
@@ -37,10 +37,9 @@ const TrainLights: React.FC<TrainLightsProps> = ({
 				color={color}
 				distance={distance}
 				decay={decay}
-				castShadow
-				shadow-bias={shadowBias}
 				shadow-mapSize-width={shadowMapSize}
 				shadow-mapSize-height={shadowMapSize}
+				castShadow
 			/>
 			<pointLight
 				position={[
@@ -53,7 +52,6 @@ const TrainLights: React.FC<TrainLightsProps> = ({
 				distance={distance}
 				decay={decay}
 				castShadow
-				shadow-bias={shadowBias}
 				shadow-mapSize-width={shadowMapSize}
 				shadow-mapSize-height={shadowMapSize}
 			/>

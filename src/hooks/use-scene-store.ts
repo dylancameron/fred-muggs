@@ -35,9 +35,9 @@ export const useSceneStore = create<SceneState>()(
 			setNextScene: (scene) => set({ nextScene: scene }),
 			preloadScene: async (scene: SceneName) => {
 				try {
-					await import(`../components/world/scenes/${scene}`);
+					await import(`../components/world/scenes/${scene}.tsx`);
 				} catch {
-					console.error(`Failed to preload scene: ${scene}`);
+					console.error(`Failed to preload scene: ${scene}.tsx`);
 				}
 			},
 		}),

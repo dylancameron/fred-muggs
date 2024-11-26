@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from "react";
-import { useGLTF, Mesh } from "@/three/exports";
+import { useGLTF } from "@/three/exports";
 import TrainLights from "../train-lights";
 
 interface TrainCarProps {
@@ -13,10 +13,8 @@ const TrainCar = React.memo(({ modelUrl }: TrainCarProps) => {
 	useEffect(() => {
 		if (scene) {
 			scene.traverse((child) => {
-				if (child instanceof Mesh) {
-					child.castShadow = true;
-					child.receiveShadow = true;
-				}
+				child.castShadow = true;
+				child.receiveShadow = true;
 			});
 		}
 	}, [scene]);
@@ -25,7 +23,7 @@ const TrainCar = React.memo(({ modelUrl }: TrainCarProps) => {
 	const SceneContent = useMemo(
 		() => (
 			<group position={[2.5, -2.15, 8]} rotation={[0, 0.2, 0]}>
-				<primitive object={scene} scale={1} />
+				<primitive receiveShadow castShadow object={scene} scale={1} />
 			</group>
 		),
 		[scene]

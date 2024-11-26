@@ -8,7 +8,6 @@ import {
 	useGLTF,
 	useAnimations,
 	GLTFThree,
-	LoopOnce,
 	LoopRepeat,
 } from "@/three/exports";
 import React, { useEffect, useRef } from "react";
@@ -102,8 +101,8 @@ const ChimpModel = React.memo(
 			// Play the new animation
 			if (newAction) {
 				newAction.reset().fadeIn(0.5).play();
-				newAction.clampWhenFinished = true;
-				newAction.setLoop(LoopOnce, 1);
+				// newAction.clampWhenFinished = true;
+				newAction.setLoop(LoopRepeat, Infinity);
 				currentAction.current = newAction; // Update the active action
 
 				// Reset paused state on animation change
@@ -112,12 +111,14 @@ const ChimpModel = React.memo(
 		}, [animationName, actions]);
 
 		return (
-			<group ref={group} {...props} dispose={null}>
-				<group name="Scene">
+			<group castShadow ref={group} {...props} dispose={null}>
+				<group castShadow name="Scene">
 					<group
 						name="Chimp"
 						rotation={[Math.PI / 2, 0, 0]}
-						scale={0.158}
+						scale={0.2}
+						castShadow
+						receiveShadow
 					>
 						<skinnedMesh
 							name="blacksuit"
@@ -125,13 +126,15 @@ const ChimpModel = React.memo(
 							material={materials["4_Object06_0.1_16_16.001"]}
 							skeleton={nodes.blacksuit.skeleton}
 							castShadow
+							receiveShadow
 						/>
 						<skinnedMesh
 							name="body"
-							castShadow
 							geometry={nodes.body.geometry}
 							material={materials.defaultmat}
 							skeleton={nodes.body.skeleton}
+							castShadow
+							receiveShadow
 						/>
 						<primitive object={nodes.mixamorigHips} />
 					</group>
